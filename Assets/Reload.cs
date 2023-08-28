@@ -17,28 +17,34 @@ public class Reload : MonoBehaviour
     int horaTermino;
     public bool isReloading = false;
     private float reloadStartTime;
-    private float reloadCooldown = 2.5f;
+    private float reloadCooldown = 1.5f;
+    private int maxAmmo = 8;
+    private int addAmmo;
+
 
 
     void Start()
     {
-        Ammo = 8;
+        Ammo = maxAmmo;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R) && !isReloading)
+        if (Ammo < 8)
         {
-            StartReload();
-        }
-
-        if (isReloading)
-        {
-            if (Time.time - reloadStartTime >= reloadCooldown)
+            if (Input.GetKeyDown(KeyCode.R) && !isReloading)
             {
-                CompleteReload();
-                IncreaseAmmo();
+                StartReload();
+            }
+
+            if (isReloading)
+            {
+                if (Time.time - reloadStartTime >= reloadCooldown)
+                {
+                    CompleteReload();
+                    IncreaseAmmo();
+                }
             }
         }
     }
@@ -48,8 +54,9 @@ public class Reload : MonoBehaviour
         Ammo = Ammo - 1;
     }
     public void IncreaseAmmo()
-    {  
-        Ammo = Ammo + 8;
+    {
+        addAmmo = maxAmmo - Ammo;
+        Ammo = Ammo + addAmmo;
     }
     void StartReload()
     {
@@ -59,7 +66,7 @@ public class Reload : MonoBehaviour
         reloadTxt.text = "Recarregando...";
 
 
-}
+    }
 
     void CompleteReload()
     {

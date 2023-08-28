@@ -27,7 +27,6 @@ public class onClickHit : MonoBehaviour
             if(GetComponent<Reload>().Ammo > 0)
             {
                 shot();
-                
             }
         }
         
