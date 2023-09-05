@@ -14,7 +14,7 @@ public class MouseTrackerCrosshair : MonoBehaviour
     void Update()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePos.z = 10f;
+        mousePos.z = -1f;
 
         transform.position = mousePos;
     }
