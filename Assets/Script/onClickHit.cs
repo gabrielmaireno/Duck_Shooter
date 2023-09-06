@@ -7,7 +7,9 @@ using System.Threading;
 public class onClickHit : MonoBehaviour
 {
     // Start is called before the first frame update
+    public GameObject duck;
     private AudioSource gunAudio;
+    
     
     void Start()
     {
@@ -27,6 +29,9 @@ public class onClickHit : MonoBehaviour
             if(GetComponent<Reload>().Ammo > 0)
             {
                 shot();
+                if (hit() == true) {
+                    Debug.Log("Vai TOmar no CU");
+                }
             }
         }
         
@@ -35,8 +40,20 @@ public class onClickHit : MonoBehaviour
     void shot()
     {
         if (GetComponent<Reload>().Ammo >= 1)
-        // Coloque aqui a lógica para o efeito do disparo
-        gunAudio.Play(); // Isso reproduzirá o áudio associado ao AudioSource
+        
+        gunAudio.Play();
         GetComponent<Reload>().DecreaseAmmo();
     }
-}
+    private bool hit() {
+
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        if (duck.GetComponent<BoxCollider2D>().OverlapPoint(mousePosition) == true) { 
+            
+            return true;
+        }
+         
+        return false;
+
+    }
+}   

@@ -25,6 +25,7 @@ public class DuckMove : MonoBehaviour
 
                 if (timer < 1f * timerMultiplicator) {
                     transform.position = transform.position + (Vector3.left  * moveSpeed) * Time.deltaTime;
+                    transform.rotation = Quaternion.Euler(0, 180f, 0);
                 }
                 else
                 {
@@ -37,7 +38,7 @@ public class DuckMove : MonoBehaviour
                 if (timer < 1f * timerMultiplicator)
                 {
                     transform.position = transform.position + (Vector3.right * moveSpeed) * Time.deltaTime;
-
+                    transform.rotation = Quaternion.Euler(0,0,0);
                 }
                 else
                 {
